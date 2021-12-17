@@ -39,6 +39,14 @@ interface FakeProfile {
     G: number;
     B: number;
   };
+  GeoEnabled: boolean;
+  GeoData?: {
+    lat: number;
+    lng: number;
+    accuracy: number;
+    offset: number;
+    timezone: string;
+  };
 }
 
 export default FakeProfile;

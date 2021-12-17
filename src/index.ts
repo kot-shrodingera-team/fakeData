@@ -10,6 +10,7 @@ import patchNavigatorСonnection from './modules/patchNavigatorConnection';
 // import patchPlugins from './modules/patchPlugins';
 import patchWindow from './modules/patchWindow';
 import patchCanvas from './modules/patchCanvas';
+import patchGeo from './modules/patchGeo';
 
 if (!window.injected) {
   window.injected = true;
@@ -30,4 +31,5 @@ if (!window.injected) {
   patchAudio(window, fakeProfile);
   patchFonts(window, fakeProfile);
   iframeContentPatching(fakeProfile);
+  patchGeo(window, fakeProfile);
 }

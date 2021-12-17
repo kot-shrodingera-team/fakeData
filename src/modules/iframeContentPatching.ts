@@ -2,6 +2,7 @@ import FakeProfile from '../FakeProfile';
 import patchAudio from './patchAudio';
 import patchCanvas from './patchCanvas';
 import patchDnt from './patchDnt';
+import patchGeo from './patchGeo';
 // import patchFonts from './patchFonts';
 // import patchPlugins from './patchPlugins';
 import patchWindow from './patchWindow';
@@ -28,6 +29,7 @@ const iframeContentPatching = (fakeProfile: FakeProfile): void => {
         // patchPlugins(a, true);
         patchDnt(a, fakeProfile);
         patchAudio(a, fakeProfile);
+        patchGeo(a, fakeProfile);
         // try {
         //   patchFonts(a, fakeProfile);
         // } catch (e) {
@@ -48,6 +50,7 @@ const iframeContentPatching = (fakeProfile: FakeProfile): void => {
         // patchPlugins(a);
         patchDnt(a, fakeProfile);
         patchAudio(a, fakeProfile);
+        patchGeo(a, fakeProfile);
         // try {
         //   patchFonts(a, fakeProfile);
         // } catch (e) {
