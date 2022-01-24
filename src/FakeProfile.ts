@@ -39,15 +39,17 @@ interface FakeProfile {
     G: number;
     B: number;
   };
-  GeoEnabled: boolean;
-  GeoData?: {
-    lat: number;
-    lng: number;
-    accuracy: number;
-    offset: number;
-    timezone: string;
+  Location: {
+    Latitude: number;
+    Longitude: number;
+    Accuracy: number;
   };
+  IsCustomGeo: boolean;
+  Offset: number;
   IsWebRtcEnabled: boolean;
+  WebGlStatus: number;
+  WebGlVideoCard: string;
+  WebGlValues: Record<number, number>;
 }
 
 export default FakeProfile;

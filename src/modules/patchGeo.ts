@@ -6,18 +6,27 @@ const patchGeo = (
   $window: Window & typeof globalThis,
   fakeProfile: FakeProfile
 ): void => {
-  if (!fakeProfile.GeoEnabled) {
+  if (!('IsCustomGeo' in fakeProfile) || fakeProfile.IsCustomGeo === false) {
     return;
   }
+
+  const latitude = fakeProfile.Location.Latitude;
+  const longitude = fakeProfile.Location.Longitude;
+  const offset = fakeProfile.Offset;
+  const accuracy = fakeProfile.Location.Accuracy;
 
   $window.Object.defineProperty(
     $window.Object.getPrototypeOf($window.navigator.permissions),
     'query',
     {
       value: (parameters: PermissionDescriptor) => {
-        return !!parameters && parameters.name === 'geolocation'
-          ? Promise.resolve({ state: 'granted' })
-          : $window.navigator.permissions.query(parameters);
+        try {
+          return !!parameters && parameters.name === 'geolocation'
+            ? Promise.resolve({ state: 'granted' })
+            : $window.navigator.permissions.query(parameters);
+        } catch (e) {
+          return Promise.resolve({ state: 'granted' });
+        }
       },
       configurable: false,
       enumerable: true,
@@ -41,12 +50,12 @@ const patchGeo = (
     speed: null;
 
     constructor() {
-      this.accuracy = fakeProfile.GeoData.accuracy;
+      this.accuracy = accuracy;
       this.altitude = null;
       this.altitudeAccuracy = null;
       this.heading = null;
-      this.latitude = fakeProfile.GeoData.lat;
-      this.longitude = fakeProfile.GeoData.lng;
+      this.latitude = latitude;
+      this.longitude = longitude;
       this.speed = null;
     }
   }
@@ -58,7 +67,7 @@ const patchGeo = (
 
     constructor() {
       this.coords = new MyGeolocationCoordinates();
-      this.timestamp = Date.now() + fakeProfile.GeoData.offset * 1000;
+      this.timestamp = Date.now() + offset * 1000;
     }
   }
 
