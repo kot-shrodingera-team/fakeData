@@ -47,6 +47,7 @@ interface FakeProfile {
     offset: number;
     timezone: string;
   };
+  IsWebRtcEnabled: boolean;
 }
 
 export default FakeProfile;

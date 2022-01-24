@@ -1,9 +1,13 @@
 import FakeProfile from '../FakeProfile';
 
 const injectWebRTC = (fakeProfile: FakeProfile): void => {
-  if (!fakeProfile.PublicIP) {
+  if (
+    !('IsWebRtcEnabled' in fakeProfile) ||
+    fakeProfile.IsWebRtcEnabled === false
+  ) {
     return;
   }
+
   const remoteIp = fakeProfile.PublicIP;
   const localIp = fakeProfile.LocalIP || '';
   const ipRegexp = /^(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})/;
