@@ -26,7 +26,9 @@ const iframeContentPatching = (fakeProfile: FakeProfile): void => {
         }
         patchCanvas(a, fakeProfile);
         patchWindow(a, fakeProfile, true);
-        // patchPlugins(a, true);
+        if (document.querySelector('#recaptcha-token')) {
+          // patchPlugins(a, true);
+        }
         patchDnt(a, fakeProfile);
         patchAudio(a, fakeProfile);
         patchGeo(a, fakeProfile);
@@ -47,7 +49,9 @@ const iframeContentPatching = (fakeProfile: FakeProfile): void => {
         }
         patchCanvas(a, fakeProfile);
         patchWindow(a, fakeProfile);
-        // patchPlugins(a);
+        if (document.querySelector('#recaptcha-token')) {
+          // patchPlugins(a);
+        }
         patchDnt(a, fakeProfile);
         patchAudio(a, fakeProfile);
         patchGeo(a, fakeProfile);
