@@ -11,6 +11,7 @@ import patchNavigatorСonnection from './modules/patchNavigatorConnection';
 import patchWindow from './modules/patchWindow';
 import patchCanvas from './modules/patchCanvas';
 import patchGeo from './modules/patchGeo';
+import injectWebGl from './modules/injectWebGLBetting';
 
 if (!window.injected) {
   window.injected = true;
@@ -32,4 +33,5 @@ if (!window.injected) {
   patchFonts(window, fakeProfile);
   iframeContentPatching(fakeProfile);
   patchGeo(window, fakeProfile);
+  injectWebGl(fakeProfile);
 }
